@@ -1,0 +1,13 @@
+<%= form_with model: @post do |f| %>
+  <div class="field">
+    <%= f.label :title, "タイトル" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "内容" %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="button">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
