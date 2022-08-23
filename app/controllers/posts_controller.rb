@@ -6,8 +6,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path
+     if @post.save
+      flash[:notice] = "投稿完了しました"
+      redirect_to posts_path
+     else
+      @posts = Post.all
+      render :index
+     end
   end
 
   def show
@@ -20,8 +25,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post.id)
+    if @post.update(post_params)
+      flash[:notice] = "変更完了しました"
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
